@@ -39,7 +39,7 @@ int main()
 	//dilateElement = getStructuringElement(MORPH_RECT, Size(3, 3));
 	//erode(hsv, hsv, erodeElement);
 	//dilate(hsv, hsv, dilateElement);
-	VideoCapture camera(1); //Opening default camera
+	VideoCapture camera(0); //Use 0 for default camera
 	camera.set(CV_CAP_PROP_BUFFERSIZE, 0);
 	// image can be flipped using flip function
 	while (camera.isOpened())
@@ -181,38 +181,3 @@ void finddefects(vector<Vec4i> defectsPoints, vector<Point> mycontour, Mat &inpu
 }
 
 
-
-void tracking(Mat &hsv_temp, Mat &input, vector<Vec3f> &v3fCircles)
-{
-	{
-		HoughCircles(hsv_temp,			// input image
-			v3fCircles,							// function output (must be a standard template library vector
-			CV_HOUGH_GRADIENT,					// two-pass algorithm for detecting circles, this is the only choice available
-			2,									// size of image / this value = "accumulator resolution", i.e. accum res = size of image / 2
-			hsv_temp.rows / 4,				// min distance in pixels between the centers of the detected circles
-			100,								// high threshold of Canny edge detector (called by cvHoughCircles)						
-			50,									// low threshold of Canny edge detector (set at 1/2 previous value)
-			10,									// min circle radius (any circles with smaller radius will not be returned)
-			400);
-		for (int i = 0; i < v3fCircles.size(); i++) {		// for each circle . . .
-															// show ball position x, y, and radius to command line
-			cout << "ball position x = " << v3fCircles[i][0]			// x position of center point of circle
-				<< ", y = " << v3fCircles[i][1]								// y position of center point of circle
-				<< ", radius = " << v3fCircles[i][2] << "\n";				// radius of circle
-
-																			// draw small green circle at center of detected object
-			circle(input,												// draw on original image
-				cv::Point((int)v3fCircles[i][0], (int)v3fCircles[i][1]),		// center point of circle
-				3,																// radius of circle in pixels
-				cv::Scalar(0, 255, 0),											// draw pure green (remember, its BGR, not RGB)
-				CV_FILLED);														// thickness, fill in the circle
-
-																				// draw red circle around the detected object
-			cv::circle(input,												// draw on original image
-				cv::Point((int)v3fCircles[i][0], (int)v3fCircles[i][1]),		// center point of circle
-				(int)v3fCircles[i][2],											// radius of circle in pixels
-				cv::Scalar(0, 0, 255),											// draw pure red (remember, its BGR, not RGB)
-				3);
-		}
-	}
-}
