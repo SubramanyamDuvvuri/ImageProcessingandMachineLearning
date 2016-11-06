@@ -1,0 +1,4 @@
+﻿  TrackingAnObject.cpp
+c:\users\subramanyam\documents\visual studio 2015\projects\rtobjecttracking\rtobjecttracking\trackinganobject.cpp(125): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  RTObjectTracking.vcxproj -> C:\Users\subramanyam\documents\visual studio 2015\Projects\RTObjectTracking\x64\Debug\RTObjectTracking.exe
+  RTObjectTracking.vcxproj -> C:\Users\subramanyam\documents\visual studio 2015\Projects\RTObjectTracking\x64\Debug\RTObjectTracking.pdb (Full PDB)
