@@ -1,10 +1,12 @@
 #Python code to find if the patient has been admitted or not
-
+global numpy
 import numpy as np
 import matplotlib.pyplot as plt
 from sigmoid import sigmoid
 from costCompute import costCompute
-
+from gradient import gradient
+from  predict import predict
+import scipy.optimize as opt  
 
 #Loading data from file
 data = np.loadtxt ('ex2data1.txt',delimiter =',')
@@ -37,7 +39,8 @@ x=ones
 
 theta = np.zeros((x.shape[1],1))
 j = costCompute ( theta,x,y)
-
+grad = gradient(theta,x,y)
+result = opt.fmin_tnc(func=j, x0=theta, fprime=gradient, args=(X, y))  
 
 
 

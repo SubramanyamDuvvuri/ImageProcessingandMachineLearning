@@ -1,3 +1,7 @@
+##
+#Liner regression for one feature
+##
+
 import matplotlib.pyplot as plt
 import numpy as np
 from Example import Example
@@ -47,10 +51,6 @@ plt.show()
 
 
 population = np.array((1,9))
-
-
-
-
 prediction = np.dot(population,theta)
 print 'For a population of 90000 the predicted profits are'
 print prediction*10000
