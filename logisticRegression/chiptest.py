@@ -13,7 +13,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #Loading data from file
-data = np.loadtxt ('ex2data1.txt',delimiter =',')
+data = np.loadtxt ('ex2data2.txt',delimiter =',')
 X = data[:,0:(data.size/len(data))-1]
 y = data[:,(data.size/len(data))-1]
 
@@ -28,10 +28,10 @@ negetive = np.where(y==0)
 
 plt.plot(X[positive,0],X[positive,1],'*',c='b',markersize=10)
 plt.plot(X[negetive,0],X[negetive,1],'o',c='r',markersize=10)
-plt.xlabel ('Exam Score 1')
-plt.ylabel('Exam Score 2')
-plt.title ('Grading System')
-plt.legend (['Admitted','not admitted'])
+plt.xlabel ('Micro Chip 1')
+plt.ylabel('Micro chip 2')
+plt.title ('chip testing')
+#plt.legend (['y=1','y=0','Decision Boundry'])
 ##
 ####Adding intercept coloumn
 ##
@@ -60,15 +60,26 @@ print y_predict
 #X = np.concatenate((X[:,0],X[:,1]), axis = 0)
 #Y = np.array([0]*100 + [1]*100)
 
-C = 2 # SVM regularization parameter
-clf = svm.SVC(kernel = 'linear',  gamma=0.7, C=C )
+C = .1 # SVM regularization parameter
+clf = svm.SVC(kernel = 'rbf',  gamma=0.7, C=C )
 clf.fit(X, y)
-w = clf.coef_[0]
-a = -w[0] / w[1]
-xx = np.linspace(X.min(), X.max())
-yy = a * xx - (clf.intercept_[0]) / w[1]
 
-plt.plot(xx, yy, 'k-')
+h = .02  # step size in the mesh
+# create a mesh to plot in
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                     np.arange(y_min, y_max, h))
+
+# Plot the decision boundary. For that, we will assign a color to each
+# point in the mesh [x_min, m_max]x[y_min, y_max].
+Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+
+
+
+# Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.contour(xx, yy, Z, cmap=plt.cm.Paired)
 
 
 plt.show()
