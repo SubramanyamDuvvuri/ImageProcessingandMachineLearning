@@ -2,8 +2,8 @@ import numpy as np
 from sigmoid import sigmoid
 def gradient(theta, X, y):  
     theta.shape = (1, 3)
-
-    grad = zeros(3)
+    m = len(y)
+    grad = np.zeros(3)
 
     h = sigmoid(X.dot(theta.T))
 
