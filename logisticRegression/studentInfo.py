@@ -13,6 +13,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #Loading data from file
+
 data = np.loadtxt ('ex2data1.txt',delimiter =',')
 X = data[:,0:(data.size/len(data))-1]
 y = data[:,(data.size/len(data))-1]
