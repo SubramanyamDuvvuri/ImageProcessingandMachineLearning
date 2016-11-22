@@ -8,9 +8,14 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 import matplotlib.pyplot as plt
-
+from resizeimage import resizeimage
 import random
 import warnings
+import PIL
+
+
+
+
 
 warnings.filterwarnings("ignore")
 
@@ -39,10 +44,12 @@ x_train,x_test,y_train,y_test = train_test_split(X,y,random_state=4)
 ##y_pred = DTC.predict(x_test)
 #SVM.fit (x_train,y_train)
 #y_pred = SVM.predict(x_test)
-clf = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 10), random_state=1)
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(8, 8), random_state=1)
 clf.fit(X, y)
 y_pred = clf.predict (x_test)
 print metrics.accuracy_score(y_test,y_pred)
+
+
 
 
 k=0

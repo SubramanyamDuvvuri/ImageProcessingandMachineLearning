@@ -60,7 +60,7 @@ print y_predict
 #X = np.concatenate((X[:,0],X[:,1]), axis = 0)
 #Y = np.array([0]*100 + [1]*100)
 
-C = .1 # SVM regularization parameter
+C = 1 # SVM regularization parameter
 clf = svm.SVC(kernel = 'rbf',  gamma=0.7, C=C )
 clf.fit(X, y)
 
