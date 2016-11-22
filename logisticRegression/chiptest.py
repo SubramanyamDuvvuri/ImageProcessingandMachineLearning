@@ -18,6 +18,8 @@ X = data[:,0:(data.size/len(data))-1]
 y = data[:,(data.size/len(data))-1]
 
 
+
+
 # displaying a scattered plot
 
 #seperating positives and negetives
